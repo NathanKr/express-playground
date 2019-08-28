@@ -15,4 +15,9 @@ app.get("/support", (req, res) => {
   res.send("<h1>This is Support page</h1>");
 });
 
+// --- handle every thing that is not handled above, must be last
+app.get("*", (req, res) => {
+  res.send("<h1>404</h1>");
+});
+
 app.listen(PORT);

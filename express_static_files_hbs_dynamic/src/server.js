@@ -11,7 +11,7 @@ app.use(express.static(publicPath));
 
 
 app.get('/help',(req,res) =>{
-  // --- serve help.hbs
+  // --- serve help.hbs from views directory
   res.render("help",{somekey: "some dynamic value"});
 })
 

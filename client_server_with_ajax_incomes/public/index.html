@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>This is home page</h1>
+    <button onclick="getIncomes()">Get Incomes</button>
+    <div id='incomes'></div>
+    <script>
+        let incomes;
+        let objDivIncomes = document.getElementById('incomes');
+
+        function getIncomes() {
+
+for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+    
+}
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange =
+            function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    incomes = JSON.parse(this.responseText)
+                    for (let index = 0; index < incomes.length; index++) {
+                        const income = incomes[index];
+                        objDivIncomes.innerHTML += 
+                    `<p>description : ${income.description} ,
+                        amount : ${income.amount}</p>`
+                    }
+                }};
+                    xhttp.open("GET","/incomes");
+                    xhttp.send();
+            }
+    </script>
+</body>
+</html>

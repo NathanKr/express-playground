@@ -7,6 +7,11 @@ const publicPath = path.join(__dirname, "..", "public");
 // loads support.html when route is /support.html
 app.use( express.static(publicPath));
 
+// --- handle un handled route
+app.get('*', (req,res) => {
+  res.send('<h1>404</h1>');
+})
+
 app.listen(PORT, () => {
   console.log(`server listens on port : ${PORT}`);
 });

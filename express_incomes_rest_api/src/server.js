@@ -11,7 +11,7 @@ let incomes = [
   { description: "salary 2", amount: 5000, id: 2 },
   { description: "salary 3", amount: 3000, id: 3 }
 ];
-let income;
+let income , ids = incomes.length;
 
 function isIncomeValid(income) {
   return income.amount > 0 && income.description.length > 0;
@@ -91,7 +91,7 @@ app.post("/incomes", (req, res) => {
   income = {
     description: body.description,
     amount: body.amount,
-    id: incomes.length + 1
+    id: ++ids
   };
 
   incomes.push(income);

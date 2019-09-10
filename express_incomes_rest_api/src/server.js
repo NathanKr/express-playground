@@ -103,15 +103,17 @@ app.post("/incomes", (req, res) => {
 });
 
 /*
-    get all incomes
-    access e.g. with  http://localhost:8080/incomes?description=salary 1
+    get all incomes \ get specific income
+    access e.g. with  http://localhost:8080/incomes?description=salary 1 
+        or http://localhost:8080/incomes
     http method : get
 */
 app.get("/incomes", (req, res) => {
   const query = req.query;
   if (query.description) {
-    income = incomes.find(it => it.description == query.description);
-    income ? res.send(income) : res.sendStatus(404);
+    // --- handle the possiblity of few income with same description
+    const incomesFound = incomes.find(it => it.description == query.description);
+    incomesFound.length ? res.send(incomesFound) : res.sendStatus(404);
   } else {
     res.send(incomes);
   }

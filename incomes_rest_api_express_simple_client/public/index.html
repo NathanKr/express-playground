@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+</head>
+<body>
+<input id="input_delete_id" type="number" placeholder="insert id to delete">
+<button onclick="deleteIncome()">Delete income</button>    
+<br>
+<br>
+<input id='input_description' type="text" placeholder="insert description">
+<input id="input_amount" type="number" placeholder="insert amount">
+<button onclick="createIncome()">Create income</button>  
+<br>
+<br>
+<button onclick="getIncomes()">Get Incomes</button>
+<div id="id_incomes"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+let incomes;
+
+function deleteIncome()
+{
+  // -- get id
+  const id = document.getElementById('input_delete_id').value;
+
+  // -- call the server using delete
+  const url = `/incomes/${id}`;
+  axios.delete(url)
+  .then(function (response) {
+    // handle success
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+}
+
+function createIncome(){
+  // --- get description , amount from DOM
+  const description = document.getElementById('input_description').value;
+  const amount = document.getElementById('input_amount').value;
+
+  // --- call the server using post
+  axios.post('/incomes', {
+    description: description,
+    amount: amount
+  })
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+function getIncomes(){
+    axios.get('/incomes')
+  .then(function (response) {
+    incomes = response.data;
+    
+    document.getElementById('id_incomes').innerHTML = "";
+    for (let index = 0; index < incomes.length; index++) {
+        const element = incomes[index];
+        document.getElementById('id_incomes').innerHTML += 
+        `<p>${element.description} , ${element.amount} ,${element.id} </p>`
+    }
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })    
+}
+
+</script>
+</body>
+</html>

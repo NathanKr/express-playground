@@ -9,15 +9,18 @@ function auth(req, res, next){
 }
 
 app.get('/',(req,res) =>{
+    console.log('Home page');
     res.send('<h1>Home</h1>') 
 })
 
 app.get('/about',(req,res) =>{
+    console.log('About page');
     res.send('<h1>About</h1>')  
 })
 
-app.get('/shoping-cart',auth,(req,res) =>{
-    res.send('<h1>Shoping Cart</h1>')  
+app.get('/shopping-cart',auth,(req,res) =>{
+    console.log("Shopping Cart page");
+    res.send('<h1>Shopping Cart</h1>')  
 })
 
    

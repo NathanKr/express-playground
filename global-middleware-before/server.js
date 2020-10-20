@@ -5,21 +5,19 @@ const PORT = 8080;
 
 function logger(req, res, next){
     const now = new Date().toString() ;
-    console.log(`time : ${now} ,method : ${req.method} , url : ${req.url}`)
+    console.log(`Logger - time : ${now} ,method : ${req.method} , url : ${req.url}`)
     next();
 }
 
-/*
- --- app.use should be BEFORE the route handlers !!!!!!!!!!!!!!
- --- this is global middleware
-*/
 app.use(logger); 
 
 app.get('/',(req,res) =>{
+    console.log("Home page");
     res.send('<h1>Home</h1>') 
 })
 
 app.get('/about',(req,res) =>{
+    console.log("Home page");
     res.send('<h1>About</h1>')  
 })
 

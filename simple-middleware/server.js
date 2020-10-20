@@ -3,12 +3,16 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 
-// --- app.use should be BEFORE the route handlers !!!!!!!!!!!!!!
-app.use((req, res, next) => {
+function logger(req, res, next){
     const now = new Date().toString() ;
     console.log(`time : ${now} ,method : ${req.method} , url : ${req.url}`)
     next();
-   });
+}
+
+/*
+ --- app.use should be BEFORE the route handlers !!!!!!!!!!!!!!
+*/
+app.use(logger); 
 
 app.get('/',(req,res) =>{
     res.send('<h1>Home</h1>') 

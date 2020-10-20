@@ -11,6 +11,7 @@ function logger(req, res, next){
 
 /*
  --- app.use should be BEFORE the route handlers !!!!!!!!!!!!!!
+ --- this is global middleware
 */
 app.use(logger); 
 

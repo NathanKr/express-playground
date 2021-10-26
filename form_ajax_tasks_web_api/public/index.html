@@ -10,11 +10,7 @@
     <form id="id_add_task">
       <label>Name</label>
       <br />
-      <input type="text" name="name" />
-      <br />
-      <label>completed</label>
-      <br />
-      <input type="checkbox" name="completed" />
+      <input id='id_task_name'type="text" name="name" />
       <br />
       <input type="submit" value="Add Task" />
     </form>
@@ -29,12 +25,22 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      document
-        .getElementById("id_add_task")
-        .addEventListener("submit", (e) => {
-          e.preventDefault();
-          console.log('clicked');
-        });
+      document.getElementById("id_add_task").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const taskName = document.getElementById('id_task_name').value;
+        axios
+          .post("/tasks", {
+            name: taskName
+          })
+          .then(function (response) {
+            // handle success
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+      });
 
       document
         .getElementById("id_get_tasks")
@@ -44,7 +50,7 @@
             .get("/tasks")
             .then(function (response) {
               // handle success
-              console.log(response);
+              console.log(response.data);
             })
             .catch(function (error) {
               // handle error

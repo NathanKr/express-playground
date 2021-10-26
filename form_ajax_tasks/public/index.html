@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="id_add_task">
+      <label>Name</label>
+      <br />
+      <input type="text" name="name" />
+      <br />
+      <label>completed</label>
+      <br />
+      <input type="checkbox" name="completed" />
+      <br />
+      <input type="submit" value="Add Task" />
+    </form>
+    <br /><br />
+    <form id="id_get_tasks">
+      <input type="submit" value="Get Tasks" />
+    </form>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"
+      integrity="sha512-Idr7xVNnMWCsgBQscTSCivBNWWH30oo/tzYORviOCrLKmBaRxRflm2miNhTFJNVmXvCtzgms5nlJF4az2hiGnA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      document
+        .getElementById("id_add_task")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          console.log('clicked');
+        });
+
+      document
+        .getElementById("id_get_tasks")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          axios
+            .get("/tasks")
+            .then(function (response) {
+              // handle success
+              console.log(response);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            });
+        });
+    </script>
+  </body>
+</html>

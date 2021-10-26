@@ -29,7 +29,7 @@ app.get("/support", (req, res) => {
 
 app.get("/help", (req, res) => {
   // --- serve help.hbs from views directory (templates in this case)
-  res.render("help", { somekey: "some dynamic value" });
+  res.render("help", { somekey: "some dynamic value !!!" });
 });
 
 app.listen(PORT, () => {
